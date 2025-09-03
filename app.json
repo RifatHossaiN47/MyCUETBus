@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "business-directory-app",
-    "slug": "business-directory-app",
+    "name": "MyCUETBus",
+    "slug": "MyCUETBus",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,33 +9,55 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.MyCUETBus"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.MyCUETBus"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/icon.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "@rnmapbox/maps",
+        {
+          "publicKey": "pk.eyJ1IjoicmlmYXRoNDciLCJhIjoiY202Ymk4NXF2MDkwZzJrcTBiZHQzeTA0OCJ9.a5SHcSN7tdCcnF6IpfaJ-A",
+          "android": {
+            "accessToken": "pk.eyJ1IjoicmlmYXRoNDciLCJhIjoiY202Ymk4NXF2MDkwZzJrcTBiZHQzeTA0OCJ9.a5SHcSN7tdCcnF6IpfaJ-A"
+          },
+          "ios": {
+            "accessToken": "pk.eyJ1IjoicmlmYXRoNDciLCJhIjoiY202Ymk4NXF2MDkwZzJrcTBiZHQzeTA0OCJ9.a5SHcSN7tdCcnF6IpfaJ-A"
+          }
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "f5776b7c-37e0-49cf-a97b-563b2d0ece2f"
+      }
     }
   }
 }
