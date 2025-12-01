@@ -9,9 +9,10 @@ import {
 import React from "react";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
-const Profilecard = ({ image, name, id }) => {
+const Profilecard = ({ image, name, id, mail, dept }) => {
   const images = {
-    rifathossain: require("../assets/images/developers/Rwhite.png"),
+    pics: require("../assets/images/developers/pics.jpg"),
+    shuvo: require("../assets/images/developers/shuvo.jpg"),
   };
 
   const openEmail = (email, subject = "") => {
@@ -24,7 +25,7 @@ const Profilecard = ({ image, name, id }) => {
     );
   };
 
-  const personalEmail = "rifat8851@gmail.com";
+  const personalEmail = `${mail}`;
   const studentEmail = `u${id}@student.cuet.ac.bd`;
 
   return (
@@ -50,7 +51,7 @@ const Profilecard = ({ image, name, id }) => {
           <View className="flex-row items-center mb-2">
             <MaterialIcons name="school" size={20} color="#6B7280" />
             <Text className="text-gray-700 ml-2 font-medium">
-              Department of CSE, CUET
+              Department of {dept}, CUET
             </Text>
           </View>
           <Text className="text-gray-600 text-center">

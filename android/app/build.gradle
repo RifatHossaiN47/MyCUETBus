@@ -101,6 +101,11 @@ packagingOptions {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
+        
+        // Build only for ARM architectures (reduces size by ~50MB)
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
     }
     signingConfigs {
         debug {
@@ -118,10 +123,11 @@ packagingOptions {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
             signingConfig signingConfigs.debug
-            shrinkResources (findProperty('android.enableShrinkResourcesInReleaseBuilds')?.toBoolean() ?: false)
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            crunchPngs (findProperty('android.enablePngCrunchInReleaseBuilds')?.toBoolean() ?: true)
+            // Enable code shrinking and resource optimization to reduce APK size
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            crunchPngs true
         }
     }
     packagingOptions {

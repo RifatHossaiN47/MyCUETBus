@@ -46,6 +46,25 @@ const signUP = () => {
   // Handle Form Submission
   const onSubmit = async (data) => {
     setIsLoading(true);
+
+    // Check network connectivity first
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
+      await fetch("https://www.google.com/generate_204", {
+        method: "HEAD",
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+    } catch (networkError) {
+      setIsLoading(false);
+      Alert.alert(
+        "No Internet Connection",
+        "Please check your internet connection and try again."
+      );
+      return;
+    }
+
     try {
       // Create user account
       const userCredential = await createUserWithEmailAndPassword(
@@ -53,7 +72,7 @@ const signUP = () => {
         data.email,
         data.password
       );
-      
+
       // Update profile with name and user role
       await updateProfile(userCredential.user, {
         displayName: data.name,
@@ -62,29 +81,31 @@ const signUP = () => {
 
       // Send verification email
       await sendEmailVerification(userCredential.user);
-      
+
       Alert.alert(
         "Account Created Successfully!",
         "Please check your email and verify your account before signing in.",
         [
           {
             text: "OK",
-            onPress: () => router.replace("/signIN")
-          }
+            onPress: () => router.replace("/signIN"),
+          },
         ]
       );
     } catch (error) {
       console.error("Signup error:", error);
       let errorMessage = "Failed to create account. Please try again.";
-      
-      if (error.code === 'auth/email-already-in-use') {
-        errorMessage = "This email is already registered. Please sign in instead.";
-      } else if (error.code === 'auth/weak-password') {
-        errorMessage = "Password is too weak. Please choose a stronger password.";
-      } else if (error.code === 'auth/invalid-email') {
+
+      if (error.code === "auth/email-already-in-use") {
+        errorMessage =
+          "This email is already registered. Please sign in instead.";
+      } else if (error.code === "auth/weak-password") {
+        errorMessage =
+          "Password is too weak. Please choose a stronger password.";
+      } else if (error.code === "auth/invalid-email") {
         errorMessage = "Invalid email address.";
       }
-      
+
       Alert.alert("Error", errorMessage);
     } finally {
       setIsLoading(false);
@@ -93,7 +114,7 @@ const signUP = () => {
 
   return (
     <View className="flex-1 bg-white justify-center p-5">
-      <View className="flex-1 justify-center items-center bg-blue-900 max-h-32 mb-10 border border-4">
+      <View className="flex-1 justify-center items-center bg-blue-900 max-h-32 mb-10 border-4">
         <Text className="text-5xl font-bold text-center text-white w-4/5">
           SIGN UP
         </Text>

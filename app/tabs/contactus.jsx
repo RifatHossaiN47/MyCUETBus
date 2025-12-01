@@ -23,6 +23,13 @@ const ContactUs = () => {
     );
   };
 
+  const technicalTeam = [
+    "Aadil Mubasshar",
+    "Anupom Das Kabyo",
+    "Ridoy Chandra Sarkar",
+    "Anower Hossen Saki",
+  ];
+
   return (
     <ScrollView
       className="flex-1 bg-gray-50"
@@ -42,16 +49,86 @@ const ContactUs = () => {
         </Text>
       </View>
 
-      {/* Developer Information */}
+      {/* Lead Team Section */}
       <View className="p-4">
         <Text className="text-xl font-bold text-gray-800 mb-4 text-center">
-          Meet the Developer
+          Meet the Team
         </Text>
-        <Profilecard
-          image="rifathossain"
-          name="MD. Rifat Hossain"
-          id="2004129"
-        />
+
+        {/* Software Lead - Rifat */}
+        <View className="mb-4">
+          <View className="bg-blue-50 rounded-lg px-3 py-1 self-center mb-2">
+            <Text className="text-blue-600 font-semibold text-sm">
+              💻 Software Development Lead
+            </Text>
+          </View>
+          <Profilecard
+            image="pics"
+            name="MD. Rifat Hossain"
+            id="2004129"
+            mail="rifat8851@gmail.com"
+            dept="CSE"
+          />
+        </View>
+
+        {/* Technical Lead - Shuvo */}
+        <View className="mb-2">
+          <View className="bg-green-50 rounded-lg px-3 py-1 self-center mb-2">
+            <Text className="text-green-600 font-semibold text-sm">
+              🔧 Hardware & Technical Lead
+            </Text>
+          </View>
+          <Profilecard
+            image="shuvo"
+            name="Shuvo Ahmed"
+            id="2003091"
+            mail="shuvoahmed6236@gmail.com"
+            dept="ME"
+          />
+        </View>
+      </View>
+
+      {/* Technical Team Contributors */}
+      <View className="mx-4 mb-6">
+        <View className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+          <View className="flex-row items-center justify-center mb-4">
+            <Ionicons name="people" size={22} color="#8B5CF6" />
+            <Text className="text-lg font-bold text-gray-800 ml-2">
+              Technical Team Contributors
+            </Text>
+          </View>
+          <Text className="text-gray-500 text-center text-sm mb-4">
+            Assisted in GPS device setup & installation
+          </Text>
+          <View className="flex-row flex-wrap justify-center">
+            {technicalTeam.map((name, index) => (
+              <View
+                key={index}
+                className="bg-purple-50 border border-purple-200 rounded-full px-4 py-2 m-1"
+              >
+                <Text className="text-purple-700 font-medium text-sm">
+                  {name}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </View>
+      </View>
+
+      {/* ASRRO Association */}
+      <View className="mx-4 mb-6">
+        <View className="bg-indigo-50 border border-indigo-200 p-4 rounded-xl">
+          <View className="flex-row items-center justify-center">
+            <Ionicons name="rocket" size={20} color="#4F46E5" />
+            <Text className="text-indigo-700 font-semibold text-center ml-2">
+              Built in association with
+            </Text>
+          </View>
+          <Text className="text-indigo-900 font-bold text-center mt-1">
+            Andromeda Space & Robotics Research Organization (ASRRO)
+          </Text>
+          <Text className="text-indigo-500 text-center text-sm mt-1">CUET</Text>
+        </View>
       </View>
 
       {/* App Usage Guidelines */}
@@ -72,6 +149,11 @@ const ContactUs = () => {
             <View className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-3">
               <Text className="text-amber-800 font-medium mb-2">
                 ⚠️ Important Guidelines:
+              </Text>
+              <Text className="text-red-500 font-normal mb-1">
+                - To use this app in the background and continuously share
+                location data, you must grant this app location permission by
+                selecting 'Allow all the time'.
               </Text>
               <Text className="text-amber-700 leading-6">
                 • When a student shares a bus location, other students should
@@ -115,29 +197,6 @@ const ContactUs = () => {
                 • Only open map when necessary{"\n"}• Use search instead of
                 scrolling around{"\n"}• Close map when done viewing{"\n"}• Share
                 locations only when bus position changes significantly
-              </Text>
-            </View>
-          </View>
-
-          {/* Future Plans */}
-          <View className="mb-4">
-            <Text className="text-lg font-semibold text-gray-700 mb-3">
-              🚀 Future Improvements
-            </Text>
-            <View className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-              <Text className="text-purple-800 font-medium mb-2">
-                🔮 Coming Soon:
-              </Text>
-              <Text className="text-purple-700 leading-6">
-                • <Text className="font-semibold">GPS Trackers in Buses:</Text>{" "}
-                We're planning to install GPS trackers in CUET buses for
-                continuous location tracking{"\n"}•{" "}
-                <Text className="font-semibold">Real-time Updates:</Text> This
-                will eliminate the need for manual location sharing{"\n"}•{" "}
-                <Text className="font-semibold">Automated System:</Text> Buses
-                will automatically update their locations{"\n"}•{" "}
-                <Text className="font-semibold">Better Accuracy:</Text> More
-                precise and real-time location data
               </Text>
             </View>
           </View>
@@ -272,7 +331,7 @@ const ContactUs = () => {
             Made with ❤️ for CUET students
           </Text>
           <Text className="text-gray-400 text-center text-xs mt-2">
-            Version 2.0.0 • Built with React Native & Expo
+            Version 3.0.0
           </Text>
         </View>
       </View>

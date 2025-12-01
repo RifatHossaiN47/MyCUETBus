@@ -57,7 +57,8 @@
       },
       "eas": {
         "projectId": "f5776b7c-37e0-49cf-a97b-563b2d0ece2f"
-      }
+      },
+      "MAPBOX_API": "pk.eyJ1IjoicmlmYXRoNDciLCJhIjoiY202Ymk4NXF2MDkwZzJrcTBiZHQzeTA0OCJ9.a5SHcSN7tdCcnF6IpfaJ-A"
     }
   }
 }

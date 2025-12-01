@@ -92,9 +92,14 @@ const AddNotice = () => {
     Keyboard.dismiss();
 
     try {
+      // Re-verify admin status before submission
+      await auth.currentUser.reload();
       const user = auth.currentUser;
 
       if (!user || user.photoURL !== "admin") {
+        Alert.alert("Access Denied", "You no longer have admin privileges.", [
+          { text: "OK", onPress: () => router.replace("/tabs/homes") },
+        ]);
         throw new Error("Unauthorized access");
       }
 

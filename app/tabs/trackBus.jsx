@@ -1,13 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, Alert, Text, TouchableOpacity } from "react-native";
 import MapboxGL from "@rnmapbox/maps";
+import Constants from "expo-constants";
 import * as Location from "expo-location";
 import { ref, onValue, remove, get } from "firebase/database";
 import { database } from "../../firebase.config";
 import { FontAwesome } from "@expo/vector-icons";
 import { MAPBOX_API } from "@env";
 
-MapboxGL.setAccessToken(MAPBOX_API);
+// Ensure Mapbox token is available in production builds
+const mapboxToken =
+  MAPBOX_API ||
+  Constants?.expoConfig?.extra?.MAPBOX_API ||
+  Constants?.manifest?.extra?.MAPBOX_API;
+
+if (!mapboxToken) {
+  console.warn(
+    "Mapbox token missing. Set extra.MAPBOX_API in app.json or EAS env."
+  );
+} else {
+  MapboxGL.setAccessToken(mapboxToken);
+}
 
 const isFiniteLatLng = (lat, lng) =>
   Number.isFinite(lat) &&
@@ -27,6 +40,7 @@ const trackBus = () => {
     lastCleanup: null,
     deletedCount: 0,
   });
+  const [mapError, setMapError] = useState(null);
 
   const cameraRef = useRef(null);
   const firebaseListenerRef = useRef(null);
@@ -281,7 +295,11 @@ const trackBus = () => {
 
     return () => {
       if (firebaseListenerRef.current) {
-        firebaseListenerRef.current();
+        try {
+          firebaseListenerRef.current();
+        } catch (error) {
+          console.log("Firebase listener cleanup error:", error);
+        }
         firebaseListenerRef.current = null;
       }
     };
@@ -307,10 +325,11 @@ const trackBus = () => {
         return;
       }
 
-      const location = await Location.getCurrentPositionAsync({
+      const locationOptions = {
         accuracy: Location.Accuracy.High,
         timeout: 10000,
-      });
+      };
+      const location = await Location.getCurrentPositionAsync(locationOptions);
 
       const { latitude, longitude } = location.coords;
       if (!isFiniteLatLng(latitude, longitude)) {
@@ -548,7 +567,14 @@ const trackBus = () => {
 
   return (
     <View className="flex-1">
-      <MapboxGL.MapView style={{ flex: 1 }}>
+      <MapboxGL.MapView
+        style={{ flex: 1 }}
+        onMapError={(e) => {
+          const msg = e?.nativeEvent?.message || "Map failed to load";
+          console.log("Mapbox error:", msg);
+          setMapError(msg);
+        }}
+      >
         <MapboxGL.Camera
           ref={cameraRef}
           zoomLevel={10}
@@ -575,6 +601,16 @@ const trackBus = () => {
 
         {renderBusMarkers()}
       </MapboxGL.MapView>
+
+      {mapError && (
+        <View className="absolute inset-x-0 top-12 mx-4 bg-red-50 border border-red-200 p-8 rounded-md">
+          <Text className="text-red-700 font-semibold mb-2">Map error</Text>
+          <Text className="text-red-600 text-sm">{String(mapError)}</Text>
+          <Text className="text-gray-600 text-xs mt-2">
+            Tip: Ensure internet is available and Mapbox token is set.
+          </Text>
+        </View>
+      )}
 
       <View className="absolute top-12 left-4 right-4 bg-white p-2 rounded-md">
         <Text className="text-sm">

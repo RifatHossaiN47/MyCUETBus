@@ -22,7 +22,7 @@ export default function Index() {
   const [updateChecking, setUpdateChecking] = useState(false);
   const [updateAvailable, setUpdateAvailable] = useState(false);
 
-  const APP_VERSION = "2.0.0"; // Make this a constant for easier maintenance
+  const APP_VERSION = "3.0.0"; // Make this a constant for easier maintenance
 
   useEffect(() => {
     StatusBar.setBarStyle("light-content");

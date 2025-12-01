@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { collection, setDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase.config";
@@ -9,10 +15,12 @@ export default function Shedule() {
   const [selectedDay, setSelectedDay] = useState("Saturday");
   const [userType, setUserType] = useState("Teacher");
   const [expandedShift, setExpandedShift] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchScheduleData = async () => {
       try {
+        setLoading(true);
         const docRef = doc(db, "schedules", "busSchedule");
         const docSnap = await getDoc(docRef);
 
@@ -23,6 +31,8 @@ export default function Shedule() {
         }
       } catch (error) {
         console.error("Error fetching schedule data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -33,6 +43,15 @@ export default function Shedule() {
     if (!scheduleData) return [];
     return scheduleData[userType][selectedDay] || []; // Fallback to an empty array
   };
+
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-gray-100">
+        <ActivityIndicator size="large" color="#3b82f6" />
+        <Text className="text-gray-600 mt-4 text-lg">Loading schedule...</Text>
+      </View>
+    );
+  }
 
   return (
     <ScrollView className="flex-1 bg-gray-100 p-4">

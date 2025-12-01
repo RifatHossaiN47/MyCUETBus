@@ -38,6 +38,25 @@ const signIN = () => {
   // Handle Form Submission
   const onSubmit = async (data) => {
     setIsLoading(true);
+
+    // Check network connectivity first
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
+      await fetch("https://www.google.com/generate_204", {
+        method: "HEAD",
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+    } catch (networkError) {
+      setIsLoading(false);
+      Alert.alert(
+        "No Internet Connection",
+        "Please check your internet connection and try again."
+      );
+      return;
+    }
+
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -78,7 +97,7 @@ const signIN = () => {
 
   return (
     <View className="flex-1 bg-white justify-center p-5">
-      <View className="flex-1 justify-center items-center bg-blue-900 max-h-32 mb-10 border border-4">
+      <View className="flex-1 justify-center items-center bg-blue-900 max-h-32 mb-10 border-4">
         <Text className="text-5xl font-bold text-center text-white w-4/5">
           SIGN IN
         </Text>
@@ -142,6 +161,51 @@ const signIN = () => {
         <Text className="text-white text-center text-lg">
           {isLoading ? "Signing In..." : "Sign In"}
         </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={async () => {
+          Alert.prompt(
+            "Forgot Password?",
+            "Enter your email address to receive a password reset link:",
+            [
+              { text: "Cancel", style: "cancel" },
+              {
+                text: "Send Reset Link",
+                onPress: async (email) => {
+                  if (!email || !email.includes("@student.cuet.ac.bd")) {
+                    Alert.alert(
+                      "Error",
+                      "Please enter a valid CUET student email."
+                    );
+                    return;
+                  }
+                  try {
+                    const { sendPasswordResetEmail } = await import(
+                      "firebase/auth"
+                    );
+                    await sendPasswordResetEmail(auth, email);
+                    Alert.alert(
+                      "Email Sent",
+                      "Password reset link has been sent to your email."
+                    );
+                  } catch (error) {
+                    Alert.alert(
+                      "Error",
+                      error.code === "auth/user-not-found"
+                        ? "No account found with this email."
+                        : "Failed to send reset email. Please try again."
+                    );
+                  }
+                },
+              },
+            ],
+            "plain-text"
+          );
+        }}
+        className="mt-3"
+      >
+        <Text className="text-center text-blue-500">Forgot Password?</Text>
       </TouchableOpacity>
 
       <Text className="text-center mt-5">
