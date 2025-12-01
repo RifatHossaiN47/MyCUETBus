@@ -10,8 +10,9 @@
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](https://www.android.com/)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
 [![Downloads](https://img.shields.io/badge/downloads-1k%2B-brightgreen.svg)](https://mycuetbus.web.app/)
+[![Figma](https://img.shields.io/badge/design-Figma-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/design/vQ2w1PHp8utaXXKp5U1dHc/MyCUETBus-Design?node-id=0-1&t=hopklNfZRpoQyAO3-1)
 
-[Download APK](https://mycuetbus.web.app/) • [View Demo](#-features) • [Documentation](#-installation)
+[Download APK](https://mycuetbus.web.app/) • [Figma Design](https://www.figma.com/design/vQ2w1PHp8utaXXKp5U1dHc/MyCUETBus-Design?node-id=0-1&t=hopklNfZRpoQyAO3-1) • [Documentation](#-installation) • [View Demo](#-screenshots)
 
 </div>
 
@@ -44,11 +45,119 @@ MyCUETBus provides real-time GPS tracking with:
 
 <div align="center">
 
-| Track Bus                              | Share Location                         | Schedule                                     | Profile                                    |
-| -------------------------------------- | -------------------------------------- | -------------------------------------------- | ------------------------------------------ |
-| ![Track](assets/screenshots/track.png) | ![Share](assets/screenshots/share.png) | ![Schedule](assets/screenshots/schedule.png) | ![Profile](assets/screenshots/profile.png) |
+### Authentication & Onboarding
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/homepage.jpeg" width="200" alt="Splash Screen"/>
+      <br/>
+      <b>Splash Screen</b>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/splash.jpeg" width="200" alt="Sign In"/>
+      <br/>
+      <b>Sign In</b>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/signup.jpeg" width="200" alt="Sign Up"/>
+      <br/>
+      <b>Sign Up</b>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/homepage.jpeg" width="200" alt="homepage"/>
+      <br/>
+      <b>Home Page</b>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/dashboard.jpeg" width="200" alt="dashboard"/>
+      <br/>
+      <b>Dashboard</b>
+    </td>
+    
+  </tr>
+</table>
+
+### Main Features - Track Bus
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/track.jpeg" width="200" alt="Track Bus Map"/>
+      <br/>
+      <b>Track Bus Map</b>
+    </td>
+  </tr>
+</table>
+
+### Share Location Feature
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/share.jpeg" width="200" alt="Share Location"/>
+      <br/>
+      <b>Share Location</b>
+    </td>
+  </tr>
+</table>
+
+### Notice
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/notice.jpeg" width="200" alt="Notice"/>
+      <br/>
+      <b>Notice</b>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/addnotice.jpeg" width="200" alt="Add Notice"/>
+      <br/>
+      <b>Add Notice</b>
+    </td>
+  </tr>
+</table>
+
+### Schedule & Profile
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/schedule.jpeg" width="200" alt="Bus Schedule"/>
+      <br/>
+      <b>Bus Schedule</b>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/profile.jpeg" width="200" alt="User Profile"/>
+      <br/>
+      <b>Profile</b>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/contactus.jpeg" width="200" alt="Developers"/>
+      <br/>
+      <b>Contact Us</b>
+    </td>
+  </tr>
+</table>
 
 </div>
+
+---
+
+## 🎨 Design
+
+The app's UI/UX was carefully designed in Figma before development. View the complete design system, mockups, and prototypes:
+
+🔗 **[View Figma Design File](https://www.figma.com/design/vQ2w1PHp8utaXXKp5U1dHc/MyCUETBus-Design?node-id=0-1&t=hopklNfZRpoQyAO3-1)**
+
+**Design Highlights:**
+
+- 🎨 Complete UI component library
+- 📱 High-fidelity mockups for all screens
+- 🔄 Interactive prototypes
+- 🎯 Consistent design system with colors, typography, and spacing
+- ♿ Accessibility considerations
 
 ---
 
@@ -206,6 +315,7 @@ MyCUETBus/
 │   └── adminVerification.jsx     # Admin approval screen
 ├── assets/                       # Static assets
 │   ├── images/                   # App icons, logos, images
+│   ├── screenshots/              # App screenshots (12 images)
 │   └── Splash Screen.png         # Splash screen
 ├── android/                      # Native Android configuration
 │   ├── app/
