@@ -16,6 +16,12 @@
 
 </div>
 
+# Important
+
+To Check the App, you can use this account:
+Email: u2004129@student.cuet.ac.bd
+Password: asdfgh
+
 ---
 
 ## 📖 About
@@ -50,12 +56,12 @@ MyCUETBus provides real-time GPS tracking with:
 <table>
   <tr>
     <td align="center">
-      <img src="assets/screenshots/homepage.jpeg" width="200" alt="Splash Screen"/>
+      <img src="assets/screenshots/splash.jpeg" width="200" alt="Splash Screen"/>
       <br/>
       <b>Splash Screen</b>
     </td>
     <td align="center">
-      <img src="assets/screenshots/splash.jpeg" width="200" alt="Sign In"/>
+      <img src="assets/screenshots/signin.jpeg" width="200" alt="Sign In"/>
       <br/>
       <b>Sign In</b>
     </td>
