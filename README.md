@@ -442,31 +442,47 @@ MyCUETBus/
 
 ### Environment Variables
 
-Create `.env` file:
+**All configurations now use `.env` for local development:**
 
-```env
-# Mapbox
-MAPBOX_DOWNLOADS_TOKEN=sk.eyJ1...your_secret_token
-MAPBOX_API=pk.eyJ1...your_public_token
+1. **Copy the example file:**
+   ```bash
+   copy env.example .env
+   ```
 
-# Firebase (optional, can use firebase.config.js)
-FIREBASE_API_KEY=AIza...your_api_key
-FIREBASE_AUTH_DOMAIN=your-app.firebaseapp.com
-FIREBASE_DATABASE_URL=https://your-app.firebaseio.com
-FIREBASE_PROJECT_ID=your-app
-```
+2. **Fill in your credentials** in `.env`:
+   ```env
+   # Firebase - Get from Firebase Console → Project Settings
+   FIREBASE_API_KEY=AIzaSyB...your_api_key
+   FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+   FIREBASE_DATABASE_URL=https://your-project-default-rtdb.asia-southeast1.firebasedatabase.app
+   FIREBASE_PROJECT_ID=your-project-id
+   FIREBASE_STORAGE_BUCKET=your-project.firebasestorage.app
+   FIREBASE_MESSAGING_SENDER_ID=123456789012
+   FIREBASE_APP_ID=1:123456789012:web:abcdef123456
 
-Add to `app.json`:
+   # Mapbox - Get from account.mapbox.com/access-tokens
+   MAPBOX_API=pk.eyJ1...your_public_token
+   ```
 
-```json
-{
-  "expo": {
-    "extra": {
-      "MAPBOX_API": "pk.your_public_token"
-    }
-  }
-}
-```
+3. **For EAS Cloud Builds**, set environment secrets (one-time setup):
+   ```bash
+   eas secret:create --name FIREBASE_API_KEY --value "your_key"
+   eas secret:create --name FIREBASE_AUTH_DOMAIN --value "your-project.firebaseapp.com"
+   eas secret:create --name FIREBASE_DATABASE_URL --value "https://your-db-url"
+   eas secret:create --name FIREBASE_PROJECT_ID --value "your-project-id"
+   eas secret:create --name FIREBASE_STORAGE_BUCKET --value "your-project.firebasestorage.app"
+   eas secret:create --name FIREBASE_MESSAGING_SENDER_ID --value "123456789012"
+   eas secret:create --name FIREBASE_APP_ID --value "1:123456789012:web:abcdef"
+   eas secret:create --name MAPBOX_API --value "pk.your_public_token"
+   eas secret:create --name MAPBOX_DOWNLOADS_TOKEN --value "sk.your_secret_token"
+   ```
+
+4. **For native builds**, also add to `android/gradle.properties`:
+   ```properties
+   MAPBOX_DOWNLOADS_TOKEN=sk.eyJ1...your_secret_token
+   ```
+
+**Note:** `.env` is gitignored for security. Use `env.example` as a template.
 
 ---
 
@@ -577,10 +593,10 @@ SOFTWARE.
 **Rifat Hossain**  
 Student, Chittagong University of Engineering & Technology (CUET)
 
-- 📧 Email: [u2004129@student.cuet.ac.bd](mailto:u2004129@student.cuet.ac.bd)
+- 📧 Email: [rifat8851@gmail.com](mailto:rifat8851@gmail.com)
 - 🌐 Website: [mycuetbus.web.app](https://mycuetbus.web.app/)
 - 💼 GitHub: [@rifathossain47](https://github.com/rifathossain47)
-- 📱 Contact: +880 1234567890 (update with your number)
+- 📱 Contact: +880 1518914883 (update with your number)
 
 ---
 
