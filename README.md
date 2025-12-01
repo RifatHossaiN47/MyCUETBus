@@ -599,7 +599,7 @@ Student, Chittagong University of Engineering & Technology (CUET)
 - 📧 Email: [rifat8851@gmail.com](mailto:rifat8851@gmail.com)
 - 🌐 Website: [mycuetbus.web.app](https://mycuetbus.web.app/)
 - 💼 GitHub: [@rifathossain47](https://github.com/rifathossain47)
-- 📱 Contact: +880 1518914883 (update with your number)
+- 📱 Contact: +880 1518914883
 
 ---
 
