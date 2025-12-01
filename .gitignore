@@ -35,9 +35,3 @@ Thumbs.db
 .env
 .env.*
 eas.json.local
-
-# Firebase secrets
-firebase.config.js
-
-# Gradle secrets
-android/gradle.properties

@@ -445,11 +445,13 @@ MyCUETBus/
 **All configurations now use `.env` for local development:**
 
 1. **Copy the example file:**
+
    ```bash
    copy env.example .env
    ```
 
 2. **Fill in your credentials** in `.env`:
+
    ```env
    # Firebase - Get from Firebase Console → Project Settings
    FIREBASE_API_KEY=AIzaSyB...your_api_key
@@ -465,6 +467,7 @@ MyCUETBus/
    ```
 
 3. **For EAS Cloud Builds**, set environment secrets (one-time setup):
+
    ```bash
    eas secret:create --name FIREBASE_API_KEY --value "your_key"
    eas secret:create --name FIREBASE_AUTH_DOMAIN --value "your-project.firebaseapp.com"
