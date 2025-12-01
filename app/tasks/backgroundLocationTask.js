@@ -2,21 +2,25 @@ import * as TaskManager from "expo-task-manager";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ref, set, getDatabase } from "firebase/database";
 import { initializeApp, getApps, getApp } from "firebase/app";
+import Constants from "expo-constants";
 
 export const BACKGROUND_TASK_NAME = "MYCUETBUS_BG_LOCATION";
 
 const sanitizeKey = (name) => (name ?? "").replace(/[.#$/\[\]]/g, "_");
 
 // Firebase config - must be re-initialized in background context
+// Background tasks can't use @env, so we read from Constants.expoConfig.extra
+const X = Constants?.expoConfig?.extra || Constants?.manifest?.extra || {};
 const firebaseConfig = {
-  apiKey: "AIzaSyB2AXpqei62-QbMKcBjtN_EZBOiuwKbAj0",
-  authDomain: "mycuetbus.firebaseapp.com",
+  apiKey: X.FIREBASE_API_KEY || "AIzaSyB2AXpqei62-QbMKcBjtN_EZBOiuwKbAj0",
+  authDomain: X.FIREBASE_AUTH_DOMAIN || "mycuetbus.firebaseapp.com",
   databaseURL:
+    X.FIREBASE_DATABASE_URL ||
     "https://mycuetbus-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "mycuetbus",
-  storageBucket: "mycuetbus.firebasestorage.app",
-  messagingSenderId: "431639775523",
-  appId: "1:431639775523:web:4a25dd14ba6a08f048e496",
+  projectId: X.FIREBASE_PROJECT_ID || "mycuetbus",
+  storageBucket: X.FIREBASE_STORAGE_BUCKET || "mycuetbus.firebasestorage.app",
+  messagingSenderId: X.FIREBASE_MESSAGING_SENDER_ID || "431639775523",
+  appId: X.FIREBASE_APP_ID || "1:431639775523:web:4a25dd14ba6a08f048e496",
 };
 
 // Ensure Firebase is initialized in background task context
