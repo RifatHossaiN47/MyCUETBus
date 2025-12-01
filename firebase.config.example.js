@@ -10,15 +10,15 @@ import { getDatabase } from "firebase/database";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Your web app's Firebase configuration
+// IMPORTANT: Copy this file to firebase.config.js and replace with your actual values
 const firebaseConfig = {
-  apiKey: "AIzaSyB2AXpqei62-QbMKcBjtN_EZBOiuwKbAj0",
-  authDomain: "mycuetbus.firebaseapp.com",
-  databaseURL:
-    "https://mycuetbus-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "mycuetbus",
-  storageBucket: "mycuetbus.firebasestorage.app",
-  messagingSenderId: "431639775523",
-  appId: "1:431639775523:web:4a25dd14ba6a08f048e496",
+  apiKey: "YOUR_FIREBASE_API_KEY",
+  authDomain: "your-project.firebaseapp.com",
+  databaseURL: "https://your-project-default-rtdb.region.firebasedatabase.app",
+  projectId: "your-project-id",
+  storageBucket: "your-project.firebasestorage.app",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID",
 };
 
 // Initialize Firebase
