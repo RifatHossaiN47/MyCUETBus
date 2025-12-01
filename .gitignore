@@ -4,7 +4,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-lock.yaml
-package-lock.json
+.pnpm-debug.log*
+.yarn/
+.npm/
+.eslintcache
 
 # Expo / React Native
 .expo/
@@ -12,6 +15,8 @@ package-lock.json
 dist/
 web-build/
 *.log
+.expo-home/
+.react-native/
 
 # Android
 android/.gradle/
@@ -20,6 +25,9 @@ android/build/
 android/app/build/
 *.keystore
 *.jks
+android/app/debug.keystore
+android/.cxx/
+android/captures/
 
 # iOS (if present)
 ios/build/
